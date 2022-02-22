@@ -1,0 +1,82 @@
+specVersion: "0.2.0"
+
+name: "Yuser SubQuery Project"
+version: "1.0.0"
+description: "A subquery project to index Yuser data retrieved from Yuser smart contracts"
+repository: "https://github.com/yusernetwork/yuser-network-subquery"
+
+schema:
+  file: "./schema.graphql"
+
+
+network:
+  genesisHash: '0x401a1f9dca3da46f5c4091016c8a2f26dcea05865116b286f60f668207d1474b' # Genesis hash of Moonriver
+  endpoint: wss://moonriver.api.onfinality.io/public-ws
+  # Optionally provide the HTTP endpoint of a full chain dictionary to speed up processing
+  dictionary: 'https://api.subquery.network/sq/subquery/moonriver-dictionary'
+
+  chaintypes:
+    file: "./types.yaml"
+
+
+dataSources:
+  - kind: substrate/Moonbeam
+    startBlock: 749770 # 2 blocks before netGems deployment
+    processor:
+      file: './node_modules/@subql/contract-processors/dist/moonbeam.js'
+      options:
+        # Must be a key of assets
+        abi: nextGems
+        # YuserMarketPlace Contract address
+        address: '0xc433f820467107bc5176b95f3a58248C4332F8DE'
+    assets:
+      nextGems:
+        file: './nextGems.abi.json'
+    mapping:
+      file: './dist/index.js'
+      handlers:
+        - handler: handleNextGemTransfer
+          kind: substrate/MoonbeamEvent
+          filter:
+            topics:
+               -  Transfer(address indexed from,address indexed to,uint256 indexed tokenId)
+
+  - kind: substrate/Moonbeam
+    startBlock: 749770  
+    processor:
+      file: './node_modules/@subql/contract-processors/dist/moonbeam.js'
+      options:
+        # Must be a key of assets
+        abi: yuserMarketPlace
+        # YuserMarketPlace Contract address
+        address: '0xfd099f63Ee9d06B171189EcA22E1A1895DDc56F2'
+    assets:
+      yuserMarketPlace:
+        file: './yuserMarketPlace.abi.json'
+    mapping:
+      file: './dist/index.js'
+      handlers:
+        - handler: handleItemListed
+          kind: substrate/MoonbeamEvent
+          filter:
+            topics:
+               - ItemListed( uint256 itemNumber, uint256 auctionEnd, address indexed seller, uint256 indexed tokenId, address saleToken, address indexed nftToken, uint256 minPrice)
+             
+        - handler: handleBidPlaced
+          kind: substrate/MoonbeamEvent
+          filter:
+            topics:
+              - Bid(uint256 itemNumber, uint256 bidAmount, address indexed bidder, uint256 indexed tokenId)
+
+        - handler: handleSettled
+          kind: substrate/MoonbeamEvent
+          filter:
+            topics:
+              - Settled(uint256 itemNumber, uint256 bidAmount, address indexed winner, address indexed seller, uint256 tokenId)
+
+              
+
+
+    
+
+

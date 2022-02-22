@@ -1,0 +1,55 @@
+type Transfer @entity {
+  id: ID! # Transaction hash
+
+  from: String!
+
+  to: String!
+
+  tokenId: BigInt!
+}
+
+
+type ItemListed @entity {
+  id: ID! 
+
+  itemNumber: BigInt!
+
+  auctionEnd: String!
+
+  seller: String!
+
+  tokenId: BigInt!
+
+  saleToken: String!
+
+  nftToken: String!
+
+  minPrice: BigInt!
+
+}
+
+type Bid @entity {
+  id: ID! # Transaction hash
+
+  itemNumber: BigInt!
+
+  bidAmount: BigInt!
+
+  bidder: String!
+
+  tokenId: BigInt!
+}
+
+type Settled @entity {
+  id: ID! # Transaction hash
+
+  itemNumber: BigInt!
+
+  bidAmount: BigInt!
+
+  winner: String!
+
+  seller: String!
+
+  tokenId: BigInt!
+}
