@@ -3,7 +3,7 @@ specVersion: "0.2.0"
 name: "Yuser SubQuery Project"
 version: "1.0.0"
 description: "A subquery project to index Yuser data retrieved from Yuser smart contracts"
-repository: "https://github.com/yusernetwork/yuser-network-subquery"
+repository: "https://github.com/yusernetwork/yuser-subquery"
 
 schema:
   file: "./schema.graphql"

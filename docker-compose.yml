@@ -26,10 +26,7 @@ services:
     command:
       - -f=/app
       - --local
-      - --unsafe
       - --batch-size=5
-    logging:
-      driver: gcplogs
 
   graphql-engine:
     image: onfinality/subql-query:latest
