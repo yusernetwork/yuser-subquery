@@ -28,7 +28,7 @@
     "@feathersjs/feathers": "^4.5.11",
     "@feathersjs/rest-client": "^4.5.11",
     "@feathersjs/socketio-client": "^4.5.11",
-    "@subql/contract-processors": "^0.3.0",
+    "@subql/contract-processors": "^0.5.1",
     "@subql/types": "^0.10.0",
     "ethers": "^5.5.0",
     "feathers": "^2.2.4",
