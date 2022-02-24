@@ -17,7 +17,7 @@
     "project.yaml"
   ],
   "devDependencies": {
-    "@polkadot/api": "^6.6.1",
+    "@polkadot/api": "^7.9.1",
     "@polkadot/api-augment": "^7.9.1",
     "@subql/cli": "^0.15.0",
     "typescript": "^4.1.3"
