@@ -9,8 +9,8 @@
     "test": "jest",
     "codegen": "./node_modules/.bin/subql codegen"
   },
-  "homepage": "https://github.com/yusernetwork/yuser-network-subquery",
-  "repository": "github:yusernetwork/yuser-network-subquery",
+  "homepage": "https://github.com/yusernetwork/yuser-subquery",
+  "repository": "github:yusernetwork/yuser-subquery",
   "files": [
     "dist",
     "schema.graphql",
