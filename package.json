@@ -16,8 +16,6 @@
     "schema.graphql",
     "project.yaml"
   ],
-  "author": "Kasra Naderi",
-  "license": "Apache-2.0",
   "devDependencies": {
     "@polkadot/api": "^6.6.1",
     "@polkadot/api-augment": "^7.9.1",
